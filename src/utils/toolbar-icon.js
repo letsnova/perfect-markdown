@@ -1,107 +1,109 @@
-export default {
-    bold: {
-        prefix: '**',
-        subfix: '**',
-        txt: '粗体'
-    },
-    italic: {
-        prefix: '*',
-        subfix: '*',
-        txt: '斜体'
-    },
-    title1: {
-        prefix: '# ',
-        subfix: '',
-        txt: '一级标题'
-    },
-    title2: {
-        prefix: '## ',
-        subfix: '',
-        txt: '二级标题'
-    },
-    title3: {
-        prefix: '### ',
-        subfix: '',
-        txt: '三级标题'
-    },
-    title4: {
-        prefix: '#### ',
-        subfix: '',
-        txt: '四级标题'
-    },
-    title5: {
-        prefix: '##### ',
-        subfix: '',
-        txt: '五级标题'
-    },
-    underline: {
-        prefix: '++',
-        subfix: '++',
-        txt: '下划线'
-    },
-    throughline: {
-        prefix: '~~',
-        subfix: '~~',
-        txt: '中划线'
-    },
-    mark: {
-        prefix: '==',
-        subfix: '==',
-        txt: '标记'
-    },
-    sub: {
-        prefix: '~',
-        subfix: '~',
-        txt: '下标'
-    },
-    sup: {
-        prefix: '^',
-        subfix: '^',
-        txt: '上标'
-    },
-    left: {
-        prefix: '::: hljs-left\n\n',
-        subfix: '\n\n:::\n',
-        txt: '居左'
-    },
-    center: {
-        prefix: '::: hljs-center\n\n',
-        subfix: '\n\n:::\n',
-        txt: '居中'
-    },
-    right: {
-        prefix: '::: hljs-right\n\n',
-        subfix: '\n\n:::\n',
-        txt: '居右'
-    },
-    quotation: {
-        prefix: '> ',
-        subfix: '',
-        txt: '引用'
-    },
-    ul: {
-        prefix: '- ',
-        subfix: '',
-        txt: ''
-    },
-    ol: {
-        prefix: '1. ',
-        subfix: '',
-        txt: ''
-    },
-    code: {
-        prefix: '```',
-        subfix: '\n\n```\n',
-        txt: 'lang'
-    },
-    table: {
-        prefix: '',
-        subfix: '',
-        txt: '\n|column1|column2|column3|column4|\n|-|-|-|-|\n|content1|content2|content3|content4|\n'
-    },
-    clear: {
-        prefix: '',
-        subfix: '',
-        txt: ''
+export default function () {
+    return {
+        bold: {
+            prefix: '**',
+            subfix: '**',
+            txt: this.$t('toolbar.left.bold')
+        },
+        italic: {
+            prefix: '*',
+            subfix: '*',
+            txt: this.$t('toolbar.left.italic')
+        },
+        title1: {
+            prefix: '# ',
+            subfix: '',
+            txt: this.$t('toolbar.left.h1')
+        },
+        title2: {
+            prefix: '## ',
+            subfix: '',
+            txt: this.$t('toolbar.left.h2')
+        },
+        title3: {
+            prefix: '### ',
+            subfix: '',
+            txt: this.$t('toolbar.left.h3')
+        },
+        title4: {
+            prefix: '#### ',
+            subfix: '',
+            txt: this.$t('toolbar.left.h4')
+        },
+        title5: {
+            prefix: '##### ',
+            subfix: '',
+            txt: this.$t('toolbar.left.h5')
+        },
+        underline: {
+            prefix: '++',
+            subfix: '++',
+            txt: this.$t('toolbar.left.underline')
+        },
+        throughline: {
+            prefix: '~~',
+            subfix: '~~',
+            txt: this.$t('toolbar.left.throughline')
+        },
+        mark: {
+            prefix: '==',
+            subfix: '==',
+            txt: this.$t('toolbar.left.mark')
+        },
+        sub: {
+            prefix: '~',
+            subfix: '~',
+            txt: this.$t('toolbar.left.sub')
+        },
+        sup: {
+            prefix: '^',
+            subfix: '^',
+            txt: this.$t('toolbar.left.sup')
+        },
+        left: {
+            prefix: '::: hljs-left\n\n',
+            subfix: '\n\n:::\n',
+            txt: this.$t('toolbar.left.left')
+        },
+        center: {
+            prefix: '::: hljs-center\n\n',
+            subfix: '\n\n:::\n',
+            txt: this.$t('toolbar.left.center')
+        },
+        right: {
+            prefix: '::: hljs-right\n\n',
+            subfix: '\n\n:::\n',
+            txt: this.$t('toolbar.left.right')
+        },
+        quotation: {
+            prefix: '> ',
+            subfix: '',
+            txt: this.$t('toolbar.left.quotation')
+        },
+        ul: {
+            prefix: '- ',
+            subfix: '',
+            txt: ''
+        },
+        ol: {
+            prefix: '1. ',
+            subfix: '',
+            txt: ''
+        },
+        code: {
+            prefix: '```',
+            subfix: '\n\n```\n',
+            txt: 'lang'
+        },
+        table: {
+            prefix: '',
+            subfix: '',
+            txt: '\n|столбец1|столбец2|столбец3|столбец4|\n|-|-|-|-|\n|ячейка1|ячейка2|ячейка3|ячейка4|\n'
+        },
+        clear: {
+            prefix: '',
+            subfix: '',
+            txt: ''
+        }
     }
 }

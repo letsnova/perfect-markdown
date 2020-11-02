@@ -223,20 +223,21 @@ function imageInsert(dom, payload, $vue) {
 function txtInsert(dom, icon, payload, $vue) {
     const textArea = dom()
     textArea.focus()
+    const icons = iconConfig.call($vue)
     let content = textArea.value // current value
     if ('selectionStart' in textArea) {
         const start = textArea.selectionStart
         const end = textArea.selectionEnd
-        const prefix = iconConfig[icon].prefix
-        const subfix = iconConfig[icon].subfix
-        const prefixLen = iconConfig[icon].prefix.length
-        const subfixLen = iconConfig[icon].subfix.length
+        const prefix = icons[icon].prefix
+        const subfix = icons[icon].subfix
+        const prefixLen = icons[icon].prefix.length
+        const subfixLen = icons[icon].subfix.length
         let newStart = 0
         let newEnd = 0
         if (start === end) {
-            content = content.substring(0, start) + `${prefix}${iconConfig[icon].txt}${subfix}` + content.substring(end, content.length)
+            content = content.substring(0, start) + `${prefix}${icons[icon].txt}${subfix}` + content.substring(end, content.length)
             newStart = start + prefixLen
-            newEnd = newStart + iconConfig[icon].txt.length
+            newEnd = newStart + icons[icon].txt.length
         } else {
             if (content.substring(start - prefixLen, start) === prefix && content.substring(end, end + subfixLen) === subfix) {
                 // cancel

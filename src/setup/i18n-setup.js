@@ -8,12 +8,12 @@ window.Vue = Vue // i18n required
 Vue.use(VueI18n)
 
 export const i18n = new VueI18n({
-    locale: 'zh-CN', // 设置语言环境
-    fallbackLocale: 'en',
+    locale: 'ru', // 设置语言环境
+    fallbackLocale: 'zh-CN',
     messages // 设置语言环境信息
 })
 
-const loadedLanguages = ['en'] // 我们的预装默认语言
+const loadedLanguages = ['zh-CN'] // 我们的预装默认语言
 
 /**
  * add help doc
