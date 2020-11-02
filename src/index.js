@@ -1,7 +1,7 @@
 /**
  * perfect markdown
  */
-import editor from './views/editor'
+import editor from './views/editor.vue'
 import markdownIt from './utils/md'
 import markdownBody from './store/modules/markdownBody'
 import { setLangMessages, setI18nLocale, i18n, setHelp } from './setup/i18n-setup'
