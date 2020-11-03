@@ -1,7 +1,8 @@
 {
   "name": "@letsnova/perfect-markdown",
-  "version": "1.1.3",
-  "main": "src/index.js",
+  "version": "1.1.4",
+  "main": "lib/pmd.umd.js",
+  "unpkg": "lib/pmd.umd.js/pmd.umd.min.js",
   "files": [
     "lib",
     "src"
