@@ -56,7 +56,7 @@ export default {
             }
         },
         autoTextarea: {
-            placeholder: 'please input'
+            placeholder: 'Начните вводить текст'
         }
     }
 }
