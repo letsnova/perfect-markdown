@@ -5,6 +5,7 @@
         <div v-show="showToolbar" class="toolbar-box">
 
             <toolbar-left
+                :toolbar-options="computedToolbarOptions"
                 class="left"
                 @addImg="addImg"
                 @addVideo="addVideo"
@@ -16,6 +17,7 @@
                 <slot name="toolbarLeftAfter" slot="toolbarLeftAfter"></slot>
             </toolbar-left>
             <toolbar-right
+                :toolbar-options="computedToolbarOptions"
                 class="right"
                 :dom="getRenderHtml"
                 :helpDoc="helpDoc"
@@ -92,6 +94,7 @@ import { scrollLink } from '../utils/scroll'
 import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
 import Vue from 'vue'
 import { i18n } from '../setup/i18n-setup'
+import ToolbarOptions from '@/utils/toolbar-options.js'
 Vue.directive('tooltip', VTooltip)
 Vue.directive('close-popover', VClosePopover)
 Vue.component('v-popover', VPopover)
@@ -159,6 +162,12 @@ export default {
         imageClickHandler: {
             type: Function,
             default: null
+        },
+        toolbarOptions: {
+            type: [ToolbarOptions, Object],
+            default: () => {
+                return new ToolbarOptions()
+            }
         }
     },
     components: {
@@ -212,6 +221,9 @@ export default {
             get() {
                 return this.textareaContent
             }
+        },
+        computedToolbarOptions() {
+            return this.toolbarOptions instanceof ToolbarOptions ? this.toolbarOptions : new ToolbarOptions(this.toolbarOptions)
         }
     },
     methods: {

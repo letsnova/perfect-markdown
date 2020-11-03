@@ -4,9 +4,9 @@
         </template>
         <template v-else>
             <slot name="toolbarLeftBefore"></slot>
-            <span v-tooltip.top-center="$t('toolbar.left.bold')" @click="clickHandler('bold', 'insert')"><i class="iconfont icon-bold"></i></span>
-            <span v-tooltip.top-center="$t('toolbar.left.italic')" @click="clickHandler('italic', 'insert')"><i class="iconfont icon-italic"></i></span>
-            <span class="menu" v-tooltip.top-center="$t('toolbar.left.title')" @click="clickHandler('title', 'menu')"  @mouseenter="showTitleMenu" @mouseleave="hideTitleMenu">
+            <span v-if="computedToolbarOptions.bold" v-tooltip.top-center="$t('toolbar.left.bold')" @click="clickHandler('bold', 'insert')"><i class="iconfont icon-bold"></i></span>
+            <span v-if="computedToolbarOptions.italic" v-tooltip.top-center="$t('toolbar.left.italic')" @click="clickHandler('italic', 'insert')"><i class="iconfont icon-italic"></i></span>
+            <span v-if="computedToolbarOptions.heading" class="menu" v-tooltip.top-center="$t('toolbar.left.title')" @click="clickHandler('title', 'menu')"  @mouseenter="showTitleMenu" @mouseleave="hideTitleMenu">
                 <i class="iconfont icon-title"></i>
                 <transition name="fade">
                     <ul
@@ -33,21 +33,21 @@
                     </ul>
                 </transition>
             </span>
-            <span v-tooltip.top-center="$t('toolbar.left.underline')" @click="clickHandler('underline', 'insert')"><i class="iconfont icon-underline"></i></span>
-            <span v-tooltip.top-center="$t('toolbar.left.throughline')" @click="clickHandler('throughline', 'insert')"><i class="iconfont icon-strike"></i></span>
-            <span v-tooltip.top-center="$t('toolbar.left.mark')" @click="clickHandler('mark', 'insert')"><i class="iconfont icon-mark"></i></span>
-            <span v-tooltip.top-center="$t('toolbar.left.sub')" @click="clickHandler('sub', 'insert')"><i class="iconfont icon-sub"></i></span>
-            <span v-tooltip.top-center="$t('toolbar.left.sup')" @click="clickHandler('sup', 'insert')"><i class="iconfont icon-sup"></i></span>
-            <span v-tooltip.top-center="$t('toolbar.left.left')" @click="clickHandler('left', 'insert')"><i class="iconfont icon-left"></i></span>
-            <span v-tooltip.top-center="$t('toolbar.left.center')" @click="clickHandler('center', 'insert')"><i class="iconfont icon-center"></i></span>
-            <span v-tooltip.top-center="$t('toolbar.left.right')" @click="clickHandler('right', 'insert')"><i class="iconfont icon-right"></i></span>
-            <span v-tooltip.top-center="$t('toolbar.left.quotation')" @click="clickHandler('quotation', 'insert')"><i class="iconfont icon-quotation"></i></span>
-            <span v-tooltip.top-center="$t('toolbar.left.ul')" @click="clickHandler('ul', 'insert')"><i class="iconfont icon-ul"></i></span>
-            <span v-tooltip.top-center="$t('toolbar.left.ol')" @click="clickHandler('ol', 'insert')"><i class="iconfont icon-ol"></i></span>
-            <span v-tooltip.top-center="$t('toolbar.left.code')" @click="clickHandler('code', 'insert')"><i class="iconfont icon-code"></i></span>
-            <span v-tooltip.top-center="$t('toolbar.left.table')" @click="clickHandler('table', 'insert')"><i class="iconfont icon-table"></i></span>
-            <span v-tooltip.top-center="$t('toolbar.left.link')" @click="clickHandler('link', 'pop')"><i class="iconfont icon-link"></i></span>
-            <span v-tooltip.top-center="$t('toolbar.left.image')" class="menu" @click="clickHandler('image', 'menu')" @mouseenter="showImageMenu" @mouseleave="hideImageMenu">
+            <span v-if="computedToolbarOptions.underLine" v-tooltip.top-center="$t('toolbar.left.underline')" @click="clickHandler('underline', 'insert')"><i class="iconfont icon-underline"></i></span>
+            <span v-if="computedToolbarOptions.throughLine" v-tooltip.top-center="$t('toolbar.left.throughline')" @click="clickHandler('throughline', 'insert')"><i class="iconfont icon-strike"></i></span>
+            <span v-if="computedToolbarOptions.mark" v-tooltip.top-center="$t('toolbar.left.mark')" @click="clickHandler('mark', 'insert')"><i class="iconfont icon-mark"></i></span>
+            <span v-if="computedToolbarOptions.sub" v-tooltip.top-center="$t('toolbar.left.sub')" @click="clickHandler('sub', 'insert')"><i class="iconfont icon-sub"></i></span>
+            <span v-if="computedToolbarOptions.sup" v-tooltip.top-center="$t('toolbar.left.sup')" @click="clickHandler('sup', 'insert')"><i class="iconfont icon-sup"></i></span>
+            <span v-if="computedToolbarOptions.left" v-tooltip.top-center="$t('toolbar.left.left')" @click="clickHandler('left', 'insert')"><i class="iconfont icon-left"></i></span>
+            <span v-if="computedToolbarOptions.center" v-tooltip.top-center="$t('toolbar.left.center')" @click="clickHandler('center', 'insert')"><i class="iconfont icon-center"></i></span>
+            <span v-if="computedToolbarOptions.right" v-tooltip.top-center="$t('toolbar.left.right')" @click="clickHandler('right', 'insert')"><i class="iconfont icon-right"></i></span>
+            <span v-if="computedToolbarOptions.quotation" v-tooltip.top-center="$t('toolbar.left.quotation')" @click="clickHandler('quotation', 'insert')"><i class="iconfont icon-quotation"></i></span>
+            <span v-if="computedToolbarOptions.ul" v-tooltip.top-center="$t('toolbar.left.ul')" @click="clickHandler('ul', 'insert')"><i class="iconfont icon-ul"></i></span>
+            <span v-if="computedToolbarOptions.ol" v-tooltip.top-center="$t('toolbar.left.ol')" @click="clickHandler('ol', 'insert')"><i class="iconfont icon-ol"></i></span>
+            <span v-if="computedToolbarOptions.code" v-tooltip.top-center="$t('toolbar.left.code')" @click="clickHandler('code', 'insert')"><i class="iconfont icon-code"></i></span>
+            <span v-if="computedToolbarOptions.table" v-tooltip.top-center="$t('toolbar.left.table')" @click="clickHandler('table', 'insert')"><i class="iconfont icon-table"></i></span>
+            <span v-if="computedToolbarOptions.link" v-tooltip.top-center="$t('toolbar.left.link')" @click="clickHandler('link', 'pop')"><i class="iconfont icon-link"></i></span>
+            <span v-if="computedToolbarOptions.image" v-tooltip.top-center="$t('toolbar.left.image')" class="menu" @click="clickHandler('image', 'menu')" @mouseenter="showImageMenu" @mouseleave="hideImageMenu">
                 <i class="iconfont icon-image"></i>
                 <transition name="fade">
                     <ul
@@ -56,16 +56,16 @@
                         @mouseenter="showImageMenu"
                         @mouseleave="hideImageMenu"
                     >
-                        <li @click="addImgFromLink">
+                        <li v-if="computedToolbarOptions.fromNetwork" @click="addImgFromLink">
                             {{$t('toolbar.left.fromNetwork')}}
                         </li>
-                        <li>
+                        <li v-if="computedToolbarOptions.fromLocal">
                             <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="e => addImgFromLocal(e)" multiple="multiple"/> {{$t('toolbar.left.fromLocal')}}
                         </li>
                     </ul>
                 </transition>
             </span>
-            <span v-tooltip.top-center="$t('toolbar.left.video')" class="menu" @click="clickHandler('video', 'menu')" @mouseenter="showVideoMenu" @mouseleave="hideVideoMenu">
+            <span v-if="computedToolbarOptions.video" v-tooltip.top-center="$t('toolbar.left.video')" class="menu" @click="clickHandler('video', 'menu')" @mouseenter="showVideoMenu" @mouseleave="hideVideoMenu">
                 <i class="iconfont icon-video"></i>
                 <transition name="fade">
                     <ul
@@ -74,16 +74,16 @@
                         @mouseenter="showVideoMenu"
                         @mouseleave="hideVideoMenu"
                     >
-                        <li @click="addVideFromLink">
+                        <li v-if="computedToolbarOptions.fromNetwork" @click="addVideFromLink">
                             {{$t('toolbar.left.fromNetwork')}}
                         </li>
-                        <li>
+                        <li v-if="computedToolbarOptions.fromLocal">
                             <input type="file"  accept="video/mp4,audio/mp4" @change="e => addVideoFromLocal(e)"/> {{$t('toolbar.left.fromLocal')}}
                         </li>
                     </ul>
                 </transition>
             </span>
-            <span v-tooltip.top-center="$t('toolbar.left.attachment')" @click="clickHandler('file', 'menu')" @mouseenter="showFileMenu" @mouseleave="hideFileMenu">
+            <span v-if="computedToolbarOptions.attachment" v-tooltip.top-center="$t('toolbar.left.attachment')" @click="clickHandler('file', 'menu')" @mouseenter="showFileMenu" @mouseleave="hideFileMenu">
                 <i class="iconfont icon-attachment"></i>
                 <transition name="fade">
                     <ul
@@ -92,16 +92,16 @@
                         @mouseenter="showFileMenu"
                         @mouseleave="hideFileMenu"
                     >
-                        <li @click="addFileFromLink">
+                        <li v-if="computedToolbarOptions.fromNetwork" @click="addFileFromLink">
                             {{$t('toolbar.left.fromNetwork')}}
                         </li>
-                        <li>
+                        <li v-if="computedToolbarOptions.fromLocal">
                             <input type="file" accept="*" @change="e => addFileFromLocal(e)"/>{{$t('toolbar.left.fromLocal')}}
                         </li>
                     </ul>
                 </transition>
             </span>
-            <span v-tooltip.top-center="$t('toolbar.left.clear')" @click="clickHandler('clear', 'clear')">
+            <span v-if="computedToolbarOptions.clear" v-tooltip.top-center="$t('toolbar.left.clear')" @click="clickHandler('clear', 'clear')">
                 <i class="iconfont icon-trash"></i>
             </span>
             <slot name="toolbarLeftAfter"></slot>
@@ -165,6 +165,7 @@
 <script>
 import { insertContentAtCaret } from '../../utils/insert'
 import { mapActions } from 'vuex'
+import ToolbarOptions from '@/utils/toolbar-options.js'
 export default {
     data() {
         return {
@@ -195,6 +196,17 @@ export default {
         customLeftToolbar: {
             type: Boolean,
             default: false
+        },
+        toolbarOptions: {
+            type: [ToolbarOptions, Object],
+            default: () => {
+                return new ToolbarOptions()
+            }
+        }
+    },
+    computed: {
+        computedToolbarOptions() {
+            return this.toolbarOptions instanceof ToolbarOptions ? this.toolbarOptions : new ToolbarOptions(this.toolbarOptions)
         }
     },
     methods: {

@@ -12,6 +12,12 @@
                 :uploadFileFn="fileUplod"
                 :plugins="{katex: true}"
                 :imgWidthHeightAttr="{width: true, height: false}"
+                :toolbar-options="{
+                    bold: true,
+                    italic: true,
+                    import: true,
+                    export: true
+                }"
             ></pmd>
         </div>
     </div>

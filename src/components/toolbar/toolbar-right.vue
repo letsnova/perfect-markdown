@@ -4,21 +4,21 @@
         </template>
         <template v-else>
             <slot name="toolbarRightBefore"></slot>
-            <span @click="clickHandler('split')" v-tooltip.top-center="$t('toolbar.right.split')" :class="[iconActive.split? 'selected' : '']">
+            <span v-if="computedToolbarOptions.split" @click="clickHandler('split')" v-tooltip.top-center="$t('toolbar.right.split')" :class="[iconActive.split? 'selected' : '']">
                 <i class="iconfont icon-split" ></i>
             </span>
-            <span @click="clickHandler('fullscreen')" v-tooltip.top-center="$t('toolbar.right.fullscreen')">
+            <span v-if="computedToolbarOptions.fullscreen" @click="clickHandler('fullscreen')" v-tooltip.top-center="$t('toolbar.right.fullscreen')">
                 <i :class="[iconActive.fullscreen? 'icon-exit': 'icon-expand', 'iconfont' ]"></i>
             </span>
-            <span class="import" v-tooltip.top-center="$t('toolbar.right.import')">
+            <span v-if="computedToolbarOptions.import" class="import" v-tooltip.top-center="$t('toolbar.right.import')">
                 <i class="iconfont icon-import"></i>
                 <input type="file" accept="text/markdown" @change="e => addMDFromLocal(e)">
             </span>
-            <span class="export" @click="exportMd" v-tooltip.top-center="$t('toolbar.right.export')">
+            <span v-if="computedToolbarOptions.export" class="export" @click="exportMd" v-tooltip.top-center="$t('toolbar.right.export')">
                 <i class="iconfont icon-export"></i>
             </span>
-            <span @click="print" v-tooltip.top-center="$t('toolbar.right.print')"><i class="iconfont icon-print"></i></span>
-            <span @click="help"  v-tooltip.top-center="$t('toolbar.right.help')"><i class="iconfont icon-help"></i></span>
+            <span v-if="computedToolbarOptions.print" @click="print" v-tooltip.top-center="$t('toolbar.right.print')"><i class="iconfont icon-print"></i></span>
+            <span v-if="computedToolbarOptions.help" @click="help"  v-tooltip.top-center="$t('toolbar.right.help')"><i class="iconfont icon-help"></i></span>
             <slot name="toolbarRightAfter"></slot>
 
             <div
@@ -35,6 +35,7 @@
 import { mapActions, mapGetters } from 'vuex'
 import md from '../../utils/md'
 import help from '../../lang/help'
+import ToolbarOptions from '@/utils/toolbar-options.js'
 export default {
     data() {
         return {
@@ -57,10 +58,19 @@ export default {
         customRightToolbar: {
             type: Boolean,
             default: false
+        },
+        toolbarOptions: {
+            type: [ToolbarOptions, Object],
+            default: () => {
+                return new ToolbarOptions()
+            }
         }
     },
     computed: {
-        ...mapGetters({ currentMD: 'markdownBody/getTextareaContent' })
+        ...mapGetters({ currentMD: 'markdownBody/getTextareaContent' }),
+        computedToolbarOptions() {
+            return this.toolbarOptions instanceof ToolbarOptions ? this.toolbarOptions : new ToolbarOptions(this.toolbarOptions)
+        }
     },
     methods: {
         clickHandler(icon) {
